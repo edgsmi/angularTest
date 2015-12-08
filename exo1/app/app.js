@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 	
-	var countries = [
+	var countryHash = {
 		'France': {
 			wikipedia: 'https://fr.wikipedia.org/wiki/France',
 			capital: 'Paris'
@@ -26,7 +26,7 @@
 			wikipedia: 'https://fr.wikipedia.org/wiki/Suisse',
 			capital: 'Washington DC'
 		}
-	];
+	};
 	
 	var countries2 = [
 		{ name: 'FRANCE', title: 'France'},
@@ -57,7 +57,8 @@
 	}]);
 
 	app.run(['$rootScope', function($rootScope) {
-		$rootScope.countries = countries;
+		$rootScope.countries = Object.keys(countryHash);
+		$rootScope.countryHash = countryHash;
 		$rootScope.countries2 = countries2;
 	}]);
 
@@ -73,11 +74,6 @@
 		$scope.params = $routeParams;
 	}]);
 	
-	app.run(['$rootScope', function($rootScope) {
-		$rootScope.countries = countries;
-		$rootScope.countries2 = countries2;
-	}]);
-
 	app.directive('xxHeader', function() {
 		return {
 			restrict: 'E',

@@ -35,8 +35,9 @@
 
 		<script type="text/ng-template" id="country/country.html">
 			<h1>Country Details: {{country}}</h1>
-			Carte: ...<br/>
+			Capital: {{countryHash[country].capital}}<br/>
 			Lien Wikipedia: <a href="https://fr.wikipedia.org/wiki/{{country}}">{{country}}</a><br/>
+			Lien Wikipedia2: <a ng-href="{{countryHash[country].wikipedia}}">{{country}}</a><br/>
 		</script>
 
 		<script type="text/ng-template" id="tmpl/footer.html">
@@ -51,6 +52,7 @@
 			<pre>$routeParams = {{$routeParams}}</pre>
 		</script>
 
+		<script src="bower_components/es5-shim/es5-shim.min.js"></script>
 		<script src="bower_components/angular/angular.min.js"></script>
 		<script src="bower_components/angular-route/angular-route.min.js"></script>
 		<script src="bower_components/angucomplete-alt/angucomplete-alt.js"></script>
