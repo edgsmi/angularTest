@@ -1,0 +1,48 @@
+(function() {
+	'use strict';
+
+	var countries = [
+	'France',
+	'Allemagne',
+	'Italie',
+	'Espagne',
+	'Angleterre',
+	'France',
+	'USA',
+	];
+
+	var countries2 = [
+	{name: 'FRANCE', title: 'France'},
+	{name: 'ALLEMAGNE', title: 'Allemagne'},
+	];
+
+	var app = angular.module('myApp', []);
+
+	app.run(['$rootScope', function($rootScope) {
+		$rootScope.countries = countries;
+	}]);
+
+	app.directive('xxHeader', function() {
+		return {
+			restrict: 'E',
+			templateUrl: 'tmp1/header.html',
+			transclude: true
+		};
+	});
+
+	app.directive('xxBody', function() {
+		return {
+			restrict: 'E',
+			templateUrl: 'tmp1/body.html',
+			transclude: true
+		};
+	});
+
+	app.directive('xxFooter', function() {
+		return {
+			restrict: 'E',
+			templateUrl: 'tmp1/footer.html',
+			transclude: true
+		};
+	});
+})();
