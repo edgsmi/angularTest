@@ -1,0 +1,19 @@
+{
+	"country": {
+		"France": {},
+		"Allemagne": {},
+		"Italie": {
+			"wikipedia": "https://fr.wikipedia.org/wiki/Italie",
+			"capital": "Rome"
+		},
+		"Espagne": {},
+		"Suisse": {
+			"wikipedia": "https://fr.wikipedia.org/wiki/Suisse",
+			"capital": "Berne"
+		},
+		"USA": {
+			"wikipedia": "https://fr.wikipedia.org/wiki/Suisse",
+			"capital": "Washington DC"
+		}
+	}
+}

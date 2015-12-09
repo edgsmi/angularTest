@@ -43,7 +43,7 @@
 		$rootScope.countries2 = countries2;
 	}]);
 */
-	app.run(['$rootScope', '$resource', function($rootScope, $resource) {
+/*	app.run(['$rootScope', '$resource', function($rootScope, $resource) {
 		$rootScope.countryHash = '';
 		$resource('country.json').get()
 		.$promise.then(function(result) {
@@ -53,7 +53,7 @@
 			$rootScope.countries = Object.keys($rootScope.countryHash);
 		}, true);
 		$rootScope.countries2 = countries2;
-	}]);
+	}]);*/
 
 /*	app.run(['$rootScope', '$resource', '$http', function($rootScope, $resource, $http) {
 		$http.get('country.json').then(function(response) {
@@ -68,6 +68,41 @@
 		});
 		$rootScope.countries2 = countries2;
 	}]);*/
+
+	app.run(['$rootScope', '$resource', '$http', '$q', function($rootScope, $resource, $http, $q) {
+		$http.get('country.json').then(function(response) {
+			$rootScope.countryHash = response.data;
+			$rootScope.countries = Object.keys($rootScope.countryHash);		
+			var array = [];
+			for (var country in $rootScope.countryHash) {
+				if($rootScope.countryHash[country].capital === undefined) {
+					/*var promise = $http.get(country.toLowerCase() + '.json');*/
+					var promise = $http({
+						country: country,
+						url: country.toLowerCase() + '.json',
+						method: 'GET'
+					})
+					//promise.country = country;
+					array.push(promise);
+				}
+			}
+			return $q.all(array)
+		}).then(function(responses) {
+			console.log('all done', arguments);
+			responses.forEach(function(n) {
+				$rootScope.countryHash[n.config.country] = n.data;
+			})
+			/*for (var i = 0; i < responses.length; i++) {
+				$rootScope.countryHash[responses[i].config.country] = responses[i].data;
+			}*/
+		}).catch(function(error) {
+			console.log('Error', error);
+		});
+		/*$rootScope.$watch('countryHash', function() {
+			$rootScope.countries = Object.keys($rootScope.countryHash);
+		});*/
+		$rootScope.countries2 = countries2;
+	}]);
 
 	 app.controller('MainController', function($scope, $route, $routeParams, $location) {
 	     $scope.$route = $route;
