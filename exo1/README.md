@@ -1,2 +1,0 @@
-# angularTest
-for angular tests
